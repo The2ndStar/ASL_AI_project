@@ -3,6 +3,7 @@ import math
 import os
 import time
 import numpy as np
+import json
 from handtracking import HandDetector  
 
 cap = cv2.VideoCapture(0)
@@ -11,10 +12,10 @@ detector = HandDetector(maxHands=1, complexity=0)
 offset = 20
 imgSize = 300
 counter = 0
-save_interval = 0.5
+save_interval = 0.05
 last_save = time.time()
 
-folder = "data/B"
+folder = "data/A"
 if not os.path.exists(folder):
     os.makedirs(folder)
 
@@ -24,16 +25,18 @@ while True:
         break
 
     img, bboxes = detector.findHands(img)
-    imgWhite = np.ones((imgSize, imgSize, 3), np.uint8) * 255  
+    imgWhite = np.ones((imgSize, imgSize, 3), np.uint8) * 255
+    lmList = []  
 
     if bboxes:
         x, y, w, h = bboxes['bbox']
-
         x, y, w, h = max(0, x - offset), max(0, y - offset), w + 2 * offset, h + 2 * offset
         imgCrop = img[y:y + h, x:x + w]
 
         imgCropShape = imgCrop.shape
         aspectRatio = h / w
+
+        lmList = detector.findPosition(img, draw=False)
 
         if aspectRatio > 1:
             C = imgSize / h
@@ -53,8 +56,13 @@ while True:
         cv2.imshow("ImageCrop", imgCrop)
         cv2.imshow("ImageWhite", imgWhite)
 
-    if time.time() - last_save > save_interval:
+    if lmList and time.time() - last_save > save_interval:
         counter += 1
+        json_filename = f"{folder}/joints_{counter}.json"
+        with open(json_filename, "w") as f:
+            json.dump(lmList, f, indent=4)
+        print(f"Saved: {json_filename}")
+
         cv2.imwrite(f"{folder}/Image_{counter}.jpg", imgWhite)
         last_save = time.time()
         print(f"Saved: Image_{counter}.jpg")
