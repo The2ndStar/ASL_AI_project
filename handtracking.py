@@ -73,7 +73,7 @@ def main():
 
     
         if lmList:  
-            print(lmList[4])
+            print(lmList[1])
 
         cTime = time.time()
         fps = 1 / (cTime - pTime)
