@@ -16,7 +16,7 @@ counter = 0
 save_interval = 0.05
 last_save = time.time()
 
-folder = "data/H"
+folder = "data/P"
 if not os.path.exists(folder):
     os.makedirs(folder)
 
