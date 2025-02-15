@@ -3,6 +3,7 @@ import math
 import os
 import time
 import numpy as np
+import csv
 import json
 from handtracking import HandDetector  
 
@@ -19,6 +20,7 @@ folder = "data/A"
 if not os.path.exists(folder):
     os.makedirs(folder)
 
+csv_filename = f"{folder}/all_joints.csv"
 while True:
     success, img = cap.read()
     if not success:
@@ -58,15 +60,22 @@ while True:
 
     if lmList and time.time() - last_save > save_interval:
         counter += 1
-        json_filename = f"{folder}/joints_{counter}.json"
-        with open(json_filename, "w") as f:
-            json.dump(lmList, f, indent=4)
-        print(f"Saved: {json_filename}")
+        joint_data = [counter] 
+        image_filename = f"Image_{counter}.jpg"
+        image_path = os.path.join(folder, image_filename)
 
-        cv2.imwrite(f"{folder}/Image_{counter}.jpg", imgWhite)
-        last_save = time.time()
-        print(f"Saved: Image_{counter}.jpg")
+        for joint in lmList:
+            joint_data.extend(joint[1:])  
 
+        # Append to the CSV file
+        with open(csv_filename, mode="a", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow(joint_data)
+
+        cv2.imwrite(image_path, imgWhite)
+        print(f"Saved: {image_filename}")
+
+    
     cv2.imshow("Image", img)
     if cv2.waitKey(1) == ord("q"):
         break
