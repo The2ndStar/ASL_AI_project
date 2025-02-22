@@ -15,7 +15,7 @@ counter = 0
 save_interval = 0.05
 last_save = time.time()
 
-folder = "data_new/H"
+folder = "data_new/Z"
 if not os.path.exists(folder):
     os.makedirs(folder)
 
@@ -66,10 +66,10 @@ while True:
         for joint in lmList:
             joint_data.extend(joint[1:])  
 
-        # Append to the CSV file
+        ''' # Append to the CSV file
         with open(csv_filename, mode="a", newline="") as f:
             writer = csv.writer(f)
-            writer.writerow(joint_data)
+            writer.writerow(joint_data)'''
 
         cv2.imwrite(image_path, imgWhite)
         print(f"Saved: {image_filename}")
