@@ -3,18 +3,40 @@ import pandas as pd
 from statistics import mode
 
 
+
 Atrain = pd.read_csv(r'data_num\A_joints.csv')
 Btrain = pd.read_csv(r'data_num\B_joints.csv')
 Ctrain = pd.read_csv(r'data_num\C_joints.csv')
 Dtrain = pd.read_csv(r'data_num\D_joints.csv')
+Etrain = pd.read_csv(r'data_num\E_joints.csv')
+Ftrain = pd.read_csv(r'data_num\F_joints.csv')
+Gtrain = pd.read_csv(r'data_num\G_joints.csv')
+Htrain = pd.read_csv(r'data_num\H_joints.csv')
+Itrain = pd.read_csv(r'data_num\I_joints.csv')
+Jtrain = pd.read_csv(r'data_num\J_joints.csv')
+Ktrain = pd.read_csv(r'data_num\K_joints.csv')
+Ltrain = pd.read_csv(r'data_num\L_joints.csv')
+Mtrain = pd.read_csv(r'data_num\M_joints.csv')
+Ntrain = pd.read_csv(r'data_num\N_joints.csv')
+Otrain = pd.read_csv(r'data_num\O_joints.csv')
+Ptrain = pd.read_csv(r'data_num\P_joints.csv')
+Qtrain = pd.read_csv(r'data_num\Q_joints.csv')
+Rtrain = pd.read_csv(r'data_num\R_joints.csv')
+Strain = pd.read_csv(r'data_num\S_joints.csv')
+Ttrain = pd.read_csv(r'data_num\T_joints.csv')
+Utrain = pd.read_csv(r'data_num\U_joints.csv')
+Vtrain = pd.read_csv(r'data_num\V_joints.csv')
+Qtrain = pd.read_csv(r'data_num\Q_joints.csv')
+Wtrain = pd.read_csv(r'data_num\W_joints.csv')
+Xtrain = pd.read_csv(r'data_num\X_joints.csv')
+Ytrain = pd.read_csv(r'data_num\Y_joints.csv')
+Ztrain = pd.read_csv(r'data_num\Z_joints.csv')
 
-
-
-train = pd.concat([Atrain, Btrain, Ctrain,Dtrain], axis=0, ignore_index=True)
+train = pd.concat([Atrain, Btrain, Ctrain,Dtrain,Etrain,Ftrain,Gtrain,Htrain], axis=0, ignore_index=True)
 
 
 for col in train.columns:
-    if col not in ['id', 'label']:  # Avoid label and id
+    if col not in ['id', 'label']: 
         train[col] = pd.to_numeric(train[col], errors='coerce')
 
 
@@ -30,9 +52,9 @@ def euclidean_distance(point1, point2):
         distance += (point1.iloc[i] - point2.iloc[i]) ** 2
     return np.sqrt(distance) 
 
-
 k = 5
 predictions = []
+distances_list = []
 
 for _, test_row in test_data.iterrows():
     distances = []
@@ -54,7 +76,7 @@ for _, test_row in test_data.iterrows():
     predictions.append(predicted_label)
 
 
-test_data['predicted_label'] = predictions
+
 
 
 accuracy = (test_data['predicted_label'] == test_data['label']).mean()
