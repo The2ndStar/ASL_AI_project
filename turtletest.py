@@ -58,7 +58,7 @@ lives = 3
 game_over = False
 
 signs = ['W', 'H', 'C', 'D', 'Y']
-train_data = pd.concat([pd.read_csv(f'data_num/{sign}_joints.csv') for sign in signs], ignore_index=True)
+train_data = pd.concat([pd.read_csv(f'gamejoint/{sign}_joints.csv') for sign in signs], ignore_index=True)
 
 for col in train_data.columns:
     if col not in ['id', 'label']:

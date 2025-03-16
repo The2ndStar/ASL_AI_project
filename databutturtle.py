@@ -26,7 +26,7 @@ def collect_gest():
     gestures = ['W', 'H', 'C', 'D', 'Y']
     samples_per_gesture = 100
 
-    folder = "data_new"
+    folder = "gamejoint"
     if not os.path.exists(folder):
         os.makedirs(folder)
 
