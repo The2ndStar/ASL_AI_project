@@ -1,3 +1,5 @@
+
+
 import cv2
 import numpy as np
 import pandas as pd
@@ -21,7 +23,7 @@ def knn_predict(test_point, train_data, k=5):
     return predicted_label
 
 
-signs = ['A', 'B', 'C','D','E']  
+signs = ['A', 'B', 'C','D','E','O']  
 train_data = pd.concat([pd.read_csv(f'data_num/{sign}_joints.csv') for sign in signs], ignore_index=True)
 
 

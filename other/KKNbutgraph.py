@@ -6,8 +6,7 @@ from statistics import mode
 data_files = {
     'A': r'data_num\A_joints.csv',
     'B': r'data_num\B_joints.csv',
-    'C': r'data_num\C_joints.csv',
-    'D': r'data_num\D_joints.csv',
+    'C': r'data_num\C_joints.csv'
 }
 
 
