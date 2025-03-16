@@ -1,6 +1,13 @@
 from turtle import Turtle, Screen
 import subprocess
 import sys
+import pygame  
+
+
+pygame.mixer.init()
+pygame.mixer.music.load(r"sound\bgmusic.mp3") 
+pygame.mixer.music.play(-1)  
+
 
 sc = Screen()
 sc.setup(width=800, height=600)
@@ -69,16 +76,19 @@ def select():
 
 def collect_data():
     print("Data collection started...")
+    pygame.mixer.music.stop() 
     sc.bye()
     subprocess.run([sys.executable, "databutturtle.py"])
 
 def show_instructions():
     print("Displaying instructions...")
+    pygame.mixer.music.stop() 
     sc.bye()
     subprocess.run([sys.executable, "Howto.py"])
     
 def start_game():
     print("Starting game...")
+    pygame.mixer.music.stop() 
     sc.bye()
     subprocess.run([sys.executable, "turtletest.py"])
 

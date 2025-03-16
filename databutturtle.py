@@ -7,6 +7,14 @@ import subprocess
 import sys
 from handtracking import HandDetector
 
+import pygame  
+
+
+pygame.mixer.init()
+pygame.mixer.music.load(r"sound\bgmusic.mp3") 
+pygame.mixer.music.play(-1)  
+
+
 alphabet_img = {
     'W': cv2.imread("image/W.jpg"),
     'H': cv2.imread("image/H.jpg"),
@@ -100,7 +108,8 @@ def collect_gest():
 
             if cv2.waitKey(1) == ord("q"):
                 break
-
+    
+    pygame.mixer.music.stop() 
     cap.release()
     cv2.destroyAllWindows()
     print("Data collection complete!")

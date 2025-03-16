@@ -2,6 +2,14 @@ from turtle import Turtle, Screen
 import subprocess
 import sys
 
+import pygame  
+
+
+pygame.mixer.init()
+pygame.mixer.music.load(r"sound\bgmusic.mp3") 
+pygame.mixer.music.play(-1)  
+
+
 sc = Screen()
 sc.setup(width=800, height=600)
 sc.bgpic(r'bgimg\bg.gif')
@@ -90,8 +98,9 @@ def start_game():
 
 def start():
     print("Returning to main menu...")
-    sc.bye()  # Close the current screen
-    subprocess.run([sys.executable, "start.py"])  # Run the start.py script
+    pygame.mixer.music.stop() 
+    sc.bye()  
+    subprocess.run([sys.executable, "start.py"])
 
 show_instructions()
 start_page()
