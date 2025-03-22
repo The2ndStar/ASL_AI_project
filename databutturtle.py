@@ -62,11 +62,9 @@ def collect_gest():
 
             key = cv2.waitKey(1)
             if key == ord("s"):
-                print("'S' key pressed. Starting data collection...")
                 collecting = True
                 break
             elif key == ord("q"):
-                print("'Q' key pressed. Exiting...")
                 cap.release()
                 cv2.destroyAllWindows()
                 return
@@ -112,7 +110,6 @@ def collect_gest():
     pygame.mixer.music.stop() 
     cap.release()
     cv2.destroyAllWindows()
-    print("Data collection complete!")
 
 
     print("Returning to main menu...")

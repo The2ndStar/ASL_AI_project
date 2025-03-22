@@ -75,19 +75,16 @@ def select():
     buttons[selected_button]["action"]()
 
 def collect_data():
-    print("Data collection started...")
     pygame.mixer.music.stop() 
     sc.bye()
     subprocess.run([sys.executable, "databutturtle.py"])
 
 def show_instructions():
-    print("Displaying instructions...")
     pygame.mixer.music.stop() 
     sc.bye()
     subprocess.run([sys.executable, "Howto.py"])
     
 def start_game():
-    print("Starting game...")
     pygame.mixer.music.stop() 
     sc.bye()
     subprocess.run([sys.executable, "turtletest.py"])

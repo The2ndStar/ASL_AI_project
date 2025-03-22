@@ -127,7 +127,7 @@ def knn_predict(test_point, train_data, k=5):
 def over():
     sc.clear()
     time.sleep(1)
-    sc.clear()  # Clear the current screen
+    sc.clear()
     sc.bgpic(r'bgimg\bgover.gif') 
     over_t = Turtle()
     over_t.hideturtle()

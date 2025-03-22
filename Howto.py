@@ -54,12 +54,12 @@ def start_page():
 def highlight_button(index):
     global selected_button
     buttons[selected_button]["turtle"].clear()
-    buttons[selected_button]["turtle"].color("white")  # Set text color to white
+    buttons[selected_button]["turtle"].color("white") 
     buttons[selected_button]["turtle"].write(buttons[selected_button]["text"], align="center", font=("ZF #2ndPixelus", 40, "normal"))
 
     selected_button = index
     buttons[selected_button]["turtle"].clear()
-    buttons[selected_button]["turtle"].color("white")  # Set text color to white
+    buttons[selected_button]["turtle"].color("white") 
     buttons[selected_button]["turtle"].write(buttons[selected_button]["text"], align="center", font=("ZF #2ndPixelus", 45, "bold"))
 
 def up():
@@ -73,15 +73,12 @@ def down():
 def select():
     buttons[selected_button]["action"]()
 
-def collect_data():
-    print("Data collection started...")
 
 def show_instructions():
-    print("Displaying instructions...")
     instructions = Turtle()
     instructions.hideturtle()
     instructions.penup()
-    instructions.color("white")  # Set text color to white
+    instructions.color("white") 
     instructions.goto(0, -80)
     instructions.write(
         "W : Move Forward\n"
@@ -92,12 +89,10 @@ def show_instructions():
     )
 
 def start_game():
-    print("Starting game...")
     sc.bye()
     subprocess.run([sys.executable, "turtletest.py"])
 
 def start():
-    print("Returning to main menu...")
     pygame.mixer.music.stop() 
     sc.bye()  
     subprocess.run([sys.executable, "start.py"])
